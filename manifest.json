@@ -1,0 +1,19 @@
+{
+	"name": "Return Tweet Source Label",
+	"description": "__MSG_Description__",
+	"manifest_version": 3,
+	"version": "1.0.0",
+	"content_scripts": [
+		{
+			"matches": ["https://*.twitter.com/*"],
+			"js": ["main.js"],
+			"run_at": "document_end"
+		}
+	],
+	"default_locale": "en",
+	"icons": {
+		"16": "icon/icon16.png",
+		"48": "icon/icon48.png",
+		"128": "icon/icon128.png"
+	}
+}
