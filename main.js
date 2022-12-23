@@ -126,6 +126,10 @@ function main()
             }
         }    
     }
+    else
+    {
+        LastTweetID = -1;
+    }
 }
 
 var cookie = {
