@@ -66,7 +66,7 @@ function ShowLabel(Source)
     var labelField = document.getElementsByClassName("css-1dbjc4n r-1d09ksm r-1471scf r-18u37iz r-1wbh5a2");
     if(labelField.length)
     {
-        if(labelField[0].childElementCount > 1)
+        if(labelField[0].childElementCount > 1 && labelField[0].childElementCount != 2)
         {
             let target1 = labelField[0].children[1];
             let target2 = labelField[0].children[2];
