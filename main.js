@@ -66,18 +66,28 @@ function ShowLabel(Source)
     var labelField = document.getElementsByClassName("css-1dbjc4n r-1d09ksm r-1471scf r-18u37iz r-1wbh5a2");
     if(labelField.length)
     {
-        if(labelField[0].childElementCount > 1 && labelField[0].childElementCount != 2)
+        if(document.getElementById("RTSL_base") == null)
         {
-            let target1 = labelField[0].children[1];
-            let target2 = labelField[0].children[2];
-            target1.remove();
-            target2.remove();
+            var base = document.createElement('span');
+            base.setAttribute("id", "RTSL_base");
+            labelField[0].appendChild(base);
+            Incorporate(document.getElementById("RTSL_base"));
         }
+        else
+        {
+            let base = document.getElementById("RTSL_base");
+            base.innerHTML = "";
+            Incorporate(document.getElementById("RTSL_base"));
+        }
+    }
+
+    function Incorporate(base_ele)
+    {
         var ele = document.createElement('span');
         ele.setAttribute("aria-hidden", "true");
         ele.classList.add("css-901oao", "css-16my406", "r-14j79pv", "r-1q142lx", "r-poiln3", "r-bcqeeo", "r-s1qlax", "r-qvutc0");
         ele.innerHTML = `<span class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">·</span>`;
-        labelField[0].appendChild(ele);
+        base_ele.appendChild(ele);
         var div = document.createElement('div');
         div.style.display = 'none';
         div.id = "sourcetmp";
@@ -92,7 +102,7 @@ function ShowLabel(Source)
         sourcelabelfield.setAttribute("role", "link");
         sourcelabelfield.classList.add("css-4rbku5", "css-18t94o4", "css-901oao", "css-16my406", "r-14j79pv", "r-1loqt21", "r-poiln3", "r-bcqeeo", "r-1jeg54m", "r-qvutc0");
         sourcelabelfield.innerHTML = `<span class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">${sourceLabel}</span>`;
-        labelField[0].appendChild(sourcelabelfield);    
+        base_ele.appendChild(sourcelabelfield);
     }
 }
 
