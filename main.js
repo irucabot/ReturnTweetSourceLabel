@@ -8,11 +8,22 @@ function GetTweetSource(tweetID)
         }
     }
 
-    const urlbase = "https://api.irucabot.com/ReturnTweetSourceLabel/getsource";
-    var query = encodeURI(`?TweetID=${tweetID}`);
+    const urlbase = "https://api.twitter.com/graphql/NNiD2K-nEYUfXlMwGCocMQ/TweetDetail";
+    var query = encodeURI(`?variables={"focalTweetId":"${tweetID}","referrer":"home","controller_data":"DAACDAABDAABCgABCEAABEoCAAEKAAKAQAAAAAEBAAoACW6ei3WtrtOeCAALAAAABA8ADAMAAAAQAQACSgQAQAgAAQEAAABAgAoAEDHty/9MMBA1AAAAAA==","with_rux_injections":false,"includePromotedContent":true,"withCommunity":true,"withQuickPromoteEligibilityTweetFields":true,"withBirdwatchNotes":true,"withSuperFollowsUserFields":true,"withDownvotePerspective":false,"withReactionsMetadata":false,"withReactionsPerspective":false,"withSuperFollowsTweetFields":true,"withVoice":true,"withV2Timeline":true}&features={"responsive_web_twitter_blue_verified_badge_is_enabled":true,"responsive_web_graphql_exclude_directive_enabled":false,"verified_phone_label_enabled":false,"responsive_web_graphql_timeline_navigation_enabled":true,"responsive_web_graphql_skip_user_profile_image_extensions_enabled":false,"tweetypie_unmention_optimization_enabled":true,"vibe_api_enabled":true,"responsive_web_edit_tweet_api_enabled":true,"graphql_is_translatable_rweb_tweet_is_translatable_enabled":true,"view_counts_everywhere_api_enabled":true,"longform_notetweets_consumption_enabled":true,"tweet_awards_web_tipping_enabled":false,"freedom_of_speech_not_reach_fetch_enabled":false,"standardized_nudges_misinfo":true,"tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":false,"interactive_text_enabled":true,"responsive_web_text_conversations_enabled":false,"responsive_web_enhance_cards_enabled":false}`);
     url = urlbase + query;
     var request = new XMLHttpRequest();
     request.open('GET', url);
+    request.setRequestHeader("authorization", "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs=1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA");
+    request.setRequestHeader("x-csrf-token", cookie.getByName("ct0"));
+    var gt = cookie.getByName("gt");
+    if(gt.length)
+    {
+        request.setRequestHeader("x-guest-token", gt);
+    }
+    else
+    {
+        request.withCredentials = true;
+    }
     request.onreadystatechange = function () {
         if (request.readyState != 4) {
             // リクエスト中
@@ -20,7 +31,30 @@ function GetTweetSource(tweetID)
             // 失敗
         } else {
             var result = request.responseText;
-            ShowLabel(result);
+            let parse_data = JSON.parse(result);
+            let instructions = parse_data["data"]["threaded_conversation_with_injections_v2"]["instructions"];
+            for(let i = 0; i < instructions.length; i++)
+            {
+                if(instructions[i].type == "TimelineAddEntries")
+                {
+                    for(let j = 0; j < instructions[i].entries.length; j++)
+                    {
+                        if(instructions[i].entries[j]["content"]["entryType"] == "TimelineTimelineItem" && instructions[i].entries[j].entryId == `tweet-${tweetID}`)
+                        {
+                            if(isKeyExists(instructions[i].entries[j]["content"]["itemContent"]["tweet_results"]["result"], "tweet"))
+                            {
+                                ShowLabel(instructions[i].entries[j]["content"]["itemContent"]["tweet_results"]["result"]["tweet"]["source"]);
+                            }
+                            else
+                            {
+                                ShowLabel(instructions[i].entries[j]["content"]["itemContent"]["tweet_results"]["result"]["source"]);
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
         }
     };
     request.send(null);
@@ -81,7 +115,7 @@ function main()
     if(document.getElementsByClassName("css-1dbjc4n r-1d09ksm r-1471scf r-18u37iz r-1wbh5a2").length)
     {
         var CurrentURL = location.href;
-        if (CurrentURL.includes('https://twitter.com/'))
+        if (CurrentURL.includes('twitter.com/'))
         {
             question_index = CurrentURL.indexOf('?');
             if (question_index > 0)
@@ -171,18 +205,3 @@ RunMainWithInterval(); // ページ全体でDOMの変更を検知し都度ボタ
     subtree: true
   };
   observer.observe(target, config); // 設定反映のためのリスナー設置
-/*
-var observer = new MutationObserver(function (mutations) {
-    console.log("change")
-    main();
-});
-const target = document.querySelector('body');
-// 監視を開始
-observer.observe(target, {
-    attributes: true, // 属性変化の監視
-    attributeOldValue: true, // 変化前の属性値を mutations.oldValue に格納する
-    characterData: false, // テキストノードの変化を監視
-    characterDataOldValue: false, // 変化前のテキストを mutations.oldValue に格納する
-    childList: false, // 子ノードの変化を監視
-    subtree: false // 子孫ノードも監視対象に含める
-});*/
