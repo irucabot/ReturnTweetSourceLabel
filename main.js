@@ -87,9 +87,28 @@ function ShowLabel(Source)
 
     function Incorporate(base_ele)
     {
+        let body = document.body;
+        let style = window.getComputedStyle(body);
+        let colorvalue = style.getPropertyValue('background-color');
+        let themeClass;
+        switch(colorvalue)
+        {
+            case "rgb(255, 255, 255)":
+                themeClass = "r-14j79pv";
+                break;
+            case "rgb(21, 32, 43)":
+                themeClass = "r-115tad6";
+                break;
+            case "rgb(0, 0, 0)":
+                themeClass = "r-1bwzh9t";
+                break;
+            default:
+                themeClass = "r-14j79pv";
+                break;
+        }
         var ele = document.createElement('span');
         ele.setAttribute("aria-hidden", "true");
-        ele.classList.add("css-901oao", "css-16my406", "r-14j79pv", "r-1q142lx", "r-poiln3", "r-bcqeeo", "r-s1qlax", "r-qvutc0");
+        ele.classList.add("css-901oao", "css-16my406", "r-1q142lx", "r-poiln3", "r-bcqeeo", "r-s1qlax", "r-qvutc0", themeClass);
         ele.innerHTML = `<span class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">·</span>`;
         base_ele.appendChild(ele);
         var div = document.createElement('div');
@@ -104,7 +123,7 @@ function ShowLabel(Source)
         sourcelabelfield.setAttribute("rel", "noopener noreferrer nofollow");
         sourcelabelfield.setAttribute("target", "_blank");
         sourcelabelfield.setAttribute("role", "link");
-        sourcelabelfield.classList.add("css-4rbku5", "css-18t94o4", "css-901oao", "css-16my406", "r-14j79pv", "r-1loqt21", "r-poiln3", "r-bcqeeo", "r-1jeg54m", "r-qvutc0");
+        sourcelabelfield.classList.add("css-4rbku5", "css-18t94o4", "css-901oao", "css-16my406", "r-1loqt21", "r-poiln3", "r-bcqeeo", "r-1jeg54m", "r-qvutc0", themeClass);
         sourcelabelfield.innerHTML = `<span class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">${sourceLabel}</span>`;
         base_ele.appendChild(sourcelabelfield);
     }
