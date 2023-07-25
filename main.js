@@ -196,7 +196,7 @@ function ShowLabel(Source)
         var ele = document.createElement('span');
         ele.setAttribute("aria-hidden", "true");
         ele.classList.add("css-901oao", "css-16my406", "r-1q142lx", "r-poiln3", "r-bcqeeo", "r-s1qlax", "r-qvutc0", themeClass);
-        ele.innerHTML = `<span class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">·</span>`;
+        ele.innerHTML = `<span class="r-1tl8opc css-901oao css-16my406 r-bcqeeo r-qvutc0">·</span>`;
         base_ele.appendChild(ele);
         var div = document.createElement('div');
         div.style.display = 'none';
@@ -211,7 +211,7 @@ function ShowLabel(Source)
         sourcelabelfield.setAttribute("target", "_blank");
         sourcelabelfield.setAttribute("role", "link");
         sourcelabelfield.classList.add("css-4rbku5", "css-18t94o4", "css-901oao", "css-16my406", "r-1loqt21", "r-poiln3", "r-bcqeeo", "r-1jeg54m", "r-qvutc0", themeClass);
-        sourcelabelfield.innerHTML = `<span class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">${sourceLabel}</span>`;
+        sourcelabelfield.innerHTML = `<span class="r-1tl8opc css-901oao css-16my406 r-bcqeeo r-qvutc0">${sourceLabel}</span>`;
         base_ele.appendChild(sourcelabelfield);
     }
 }
