@@ -2,7 +2,7 @@
 	"name": "Return Tweet Source Label",
 	"description": "__MSG_Description__",
 	"manifest_version": 3,
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"content_scripts": [
 		{
 			"matches": ["https://*.twitter.com/*"],
