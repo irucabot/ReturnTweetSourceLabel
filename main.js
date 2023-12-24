@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         favicon.href = 'https://abs.twimg.com/favicons/twitter.ico';
     }
 
-    waitForSelector('#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-13qz1uu.r-417010 > header > div > div > div > div:nth-child(1) > div.css-1dbjc4n.r-dnmrzs.r-1vvnge1 > h1 > a > div > svg').then((logo) => {
+    waitForSelector('#react-root > div > div > div.css-175oi2r.r-18u37iz.r-13qz1uu.r-417010 > header > div > div > div > div:nth-child(1) > div.css-175oi2r.r-dnmrzs.r-1vvnge1 > h1 > a > div > svg').then((logo) => {
         if (!logo) return;
         let body = document.body;
         let style = window.getComputedStyle(body);
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function ShowBirdIcon()
 {
-    waitForSelector('#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-13qz1uu.r-417010 > header > div > div > div > div:nth-child(1) > div.css-1dbjc4n.r-dnmrzs.r-1vvnge1 > h1 > a > div > svg').then((logo) => {
+    waitForSelector('#react-root > div > div > div.css-175oi2r.r-13awgt0.r-12vffkv > header > div > div > div > div:nth-child(1) > div.css-175oi2r.r-dnmrzs.r-1vvnge1 > h1 > a > div > svg').then((logo) => {
         if (!logo) return;
         let body = document.body;
         let style = window.getComputedStyle(body);
@@ -154,7 +154,7 @@ function isNumber(n) {      //数字か
 
 function ShowLabel(Source)
 {
-    var labelField = document.getElementsByClassName("css-1dbjc4n r-1d09ksm r-1471scf r-18u37iz r-1wbh5a2");
+    var labelField = document.getElementsByClassName("css-175oi2r r-1d09ksm r-18u37iz r-1wbh5a2 r-1471scf");
     if(labelField.length)
     {
         if(document.getElementById("RTSL_base") == null)
@@ -218,7 +218,7 @@ function ShowLabel(Source)
 
 function main()
 {
-    if(document.getElementsByClassName("css-1dbjc4n r-1d09ksm r-1471scf r-18u37iz r-1wbh5a2").length)
+    if(document.getElementsByClassName("css-175oi2r r-1d09ksm r-1471scf r-18u37iz r-1wbh5a2").length)
     {
         var CurrentURL = location.href;
         if (CurrentURL.includes('twitter.com/'))
