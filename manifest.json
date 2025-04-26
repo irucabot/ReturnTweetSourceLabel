@@ -1,17 +1,16 @@
 {
-	"name": "Return Tweet Source Label & Bird icon",
+	"name": "Return Tweet Source Label",
 	"description": "__MSG_Description__",
 	"manifest_version": 3,
-	"version": "1.3.0",
+	"version": "1.3.2",
 	"content_scripts": [
 		{
-			"matches": ["https://*.twitter.com/*", "https://*.x.com/*"],
+			"matches": ["https://*.x.com/*"],
 			"js": ["main.js"],
 			"run_at": "document_start"
 		}
 	],
 	"host_permissions": [
-		"https://*.twitter.com/*",
 		"https://*.x.com/*"
 	],
 	"default_locale": "en",
